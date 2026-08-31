@@ -1,7 +1,7 @@
 /*
     Author: Jaydeep Ray
-    Date: 29-08-2026
-    Description: Simple Calculator, which can perform Addition, Substraction, Multiplication, Division, Exponentiation.
+    Date: from 29-08-2026 to 31-08-26
+    Description: Smart Calculator.
 */
 
 // Include necessaries
