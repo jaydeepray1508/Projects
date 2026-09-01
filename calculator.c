@@ -14,7 +14,7 @@ int main(void)
 {
     int opt_num, res, opr1, opr2, opr;
     printf("\n %-40s %-40s %-40s", "1. Addition", "2. Substraction", "3. Multiplication");
-    printf("\n %-40s %-40s %-40s", "4. Division", "5. Exponentiation", "6. Sqaure");
+    printf("\n %-40s %-40s %-40s", "4. Division", "5. Exponentiation", "6. Sqaure Root");
     printf("\n %-40s %-40s %-40s", "7. Log (base e)", "8. Log (base 10)", "9. Sine (angle in radians)");
     printf("\n %-40s %-40s", "10. Cosine (angle in radians)", "11. Tangent (angle in radians)");
     printf("\n Enter `-1` to exit.");
@@ -62,8 +62,8 @@ int main(void)
                 printf("\n %d raised to the power %d is: %d", opr1, opr2, res);
                 break;
             case 6:
-                res = opr * opr;
-                printf("\n Sqaure of %d is: %d", opr, res);
+                res = sqrt(opr);
+                printf("\n Sqaure root of %d is: %d", opr, res);
                 break;
             case 7:
                 res = log(opr);
@@ -94,7 +94,7 @@ int main(void)
         printf("\033[2J\033[3J\033[H");
         fflush(stdout);
         printf("\n %-40s %-40s %-40s", "1. Addition", "2. Substraction", "3. Multiplication");
-        printf("\n %-40s %-40s %-40s", "4. Division", "5. Exponentiation", "6. Sqaure");
+        printf("\n %-40s %-40s %-40s", "4. Division", "5. Exponentiation", "6. Sqaure Root");
         printf("\n %-40s %-40s %-40s", "7. Log (base e)", "8. Log (base 10)", "9. Sine (angle in radians)");
         printf("\n %-40s %-40s", "10. Cosine (angle in radians)", "11. Tangent (angle in radians)");
         printf("\n Enter `-1` to exit.");
