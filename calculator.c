@@ -5,101 +5,99 @@
     Description: Smart Calculator.
 */
 
-// Include necessaries
 #include <stdio.h>
 #include <math.h>
 
-// main function
-int main(void)
+int option;
+
+int menu(void)
 {
-    int opt_num, res, opr1, opr2, opr;
-    printf("\n %-40s %-40s %-40s", "1. Addition", "2. Substraction", "3. Multiplication");
-    printf("\n %-40s %-40s %-40s", "4. Division", "5. Exponentiation", "6. Sqaure Root");
+    printf("\n %-40s %-40s %-40s", "1. Addition", "2. Subtraction", "3. Multiplication");
+    printf("\n %-40s %-40s %-40s", "4. Division", "5. Exponentiation", "6. Square Root");
     printf("\n %-40s %-40s %-40s", "7. Log (base e)", "8. Log (base 10)", "9. Sine (angle in radians)");
     printf("\n %-40s %-40s", "10. Cosine (angle in radians)", "11. Tangent (angle in radians)");
     printf("\n Enter `-1` to exit.");
     printf("\n Enter operation number: ");
-    scanf("%d", &opt_num);
-    
-    while (opt_num != -1)
+    scanf("%d", &option);
+    return 0;
+}
+
+int main(void)
+{
+    double second_operand, first_operand;
+    double result;
+    menu();
+    while (option != -1)
     {
-        if ((opt_num > 0) && (opt_num <= 5))
+        if ((option > 0) && (option <= 5))
         {
             printf("\n Enter the first operand: ");
-            scanf("%d", &opr1);
+            scanf("%lf", &first_operand);
             printf("\n Enter the second operand: ");
-            scanf("%d", &opr2);
+            scanf("%lf", &second_operand);
         }
-        else if ((opt_num > 5) && (opt_num <= 11))
+        else if ((option > 5) && (option <= 11))
 
         {
-            printf("\n Enter the oprand: ");
-            scanf("%d", &opr);
+            printf("\n Enter the operand: ");
+            scanf("%lf", &first_operand);
         }
         else
         printf("\n Wrong operation number provided.");
         
-        switch (opt_num)
+        switch (option)
         {
             case 1:
-                res = opr1 + opr2;
-                printf("\n %d + %d = %d", opr1, opr2, res);
+                result = first_operand + second_operand;
+                printf("\n %g + %g = %g", first_operand, second_operand, result);
                 break;
             case 2:
-                res = opr1 - opr2;
-                printf("\n %d - %d = %d", opr1, opr2, res);
+                result = first_operand - second_operand;
+                printf("\n %g - %g = %g", first_operand, second_operand, result);
                 break;
             case 3:
-                res = opr1 * opr2;
-                printf("\n %d * %d = %d", opr1, opr2, res);
+                result = first_operand * second_operand;
+                printf("\n %g * %g = %g", first_operand, second_operand, result);
                 break;
             case 4:
-                res = opr1 / opr2;
-                printf("\n %d / %d = %d", opr1, opr2, res);
+                result = first_operand / second_operand;
+                printf("\n %g / %g = %g", first_operand, second_operand, result);
                 break;
             case 5:
-                res = pow(opr1, opr2);
-                printf("\n %d raised to the power %d is: %d", opr1, opr2, res);
+                result = pow(first_operand, second_operand);
+                printf("\n %g raised to the power %g is: %g", first_operand, second_operand, result);
                 break;
             case 6:
-                res = sqrt(opr);
-                printf("\n Sqaure root of %d is: %d", opr, res);
+                result = sqrt(first_operand);
+                printf("\n Sqaure root of %g is: %g", first_operand, result);
                 break;
             case 7:
-                res = log(opr);
-                printf("\n Log of %d to the base e is: %d", opr, res);
+                result = log(first_operand);
+                printf("\n Log of %g to the base e is: %g", first_operand, result);
                 break;
             case 8:
-                res = log10(opr);
-                printf("\n Log of %d to the base 10 is: %d", opr, res);
+                result = log10(first_operand);
+                printf("\n Log of %g to the base 10 is: %g", first_operand, result);
                 break;
             case 9:
-                res = sin(opr);
-                printf("\n Sine of %d radian is: %d", opr, res);
+                result = sin(first_operand);
+                printf("\n Sine of %g radian is: %g", first_operand, result);
                 break;
             case 10:
-                res = cos(opr);
-                printf("\n Cosine of %d radian is: %d", opr, res);
+                result = cos(first_operand);
+                printf("\n Cosine of %g radian is: %g", first_operand, result);
                 break;
             case 11:
-                res = tan(opr);
-                printf("\n Tangent of %d radian is: %d", opr, res);
+                result = tan(first_operand);
+                printf("\n Tangent of %g radian is: %g", first_operand, result);
                 break;
-            default:
-            printf("\n Wrong operation number is entered.");
         }
         printf("\n Press enter to continue...");
         getchar();
         getchar();
         printf("\033[2J\033[3J\033[H");
         fflush(stdout);
-        printf("\n %-40s %-40s %-40s", "1. Addition", "2. Substraction", "3. Multiplication");
-        printf("\n %-40s %-40s %-40s", "4. Division", "5. Exponentiation", "6. Sqaure Root");
-        printf("\n %-40s %-40s %-40s", "7. Log (base e)", "8. Log (base 10)", "9. Sine (angle in radians)");
-        printf("\n %-40s %-40s", "10. Cosine (angle in radians)", "11. Tangent (angle in radians)");
-        printf("\n Enter `-1` to exit.");
-        printf("\n Enter operation number: ");
-        scanf("%d", &opt_num);
+        menu();
     }
     return 0;
 }
