@@ -4,6 +4,7 @@
 
 void display_menu(void)
 {
+    printf("\033[2J\033[3J\033[H");
     printf("\n %-40s %-40s %-40s", "1. Addition", "2. Subtraction", "3. Multiplication");
     printf("\n %-40s %-40s %-40s", "4. Division", "5. Exponentiation", "6. Square Root");
     printf("\n %-40s %-40s %-40s", "7. Log (base e)", "8. Log (base 10)", "9. Sine (angle in radian)");
@@ -19,9 +20,16 @@ int get_option(void)
     return option;
 }
 
+void invalid_input(void)
+{
+    char clear[50];
+    printf("\n Invalid input provided.");
+    scanf("%s", *&clear);
+}
+
 int main(void)
 {
-    int option;
+    int option, scanned = 0;
     double second_operand, first_operand;
     double result;
     display_menu();
@@ -31,15 +39,19 @@ int main(void)
         if ((option > 0) && (option <= 5))
         {
             printf("\n Enter the first operand: ");
-            scanf("%lf", &first_operand);
+            scanned += scanf("%lf", &first_operand);
             printf("\n Enter the second operand: ");
-            scanf("%lf", &second_operand);
+            scanned += scanf("%lf", &second_operand);
+            if (scanned != 2)
+                invalid_input();
         }
         else if ((option > 5) && (option <= 11))
 
         {
             printf("\n Enter the operand: ");
-            scanf("%lf", &first_operand);
+            scanned += scanf("%lf", &first_operand);
+            if (scanned != 1)
+                invalid_input();
         }
         else
         {
@@ -102,8 +114,6 @@ int main(void)
         printf("\n Press enter to continue...");
         getchar();
         getchar();
-        printf("\033[2J\033[3J\033[H");
-        fflush(stdout);
         display_menu();
         option = get_option();
     }
