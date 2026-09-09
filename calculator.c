@@ -1,32 +1,31 @@
-/*
-    Author: Jaydeep Ray
-    Starting Date: 29-08-2026 
-    Finishing Date: 01-09-2026
-    Description: Smart Calculator.
-*/
-
 #include <stdio.h>
 #include <math.h>
 
-int option;
 
-int menu(void)
+void display_menu(void)
 {
     printf("\n %-40s %-40s %-40s", "1. Addition", "2. Subtraction", "3. Multiplication");
     printf("\n %-40s %-40s %-40s", "4. Division", "5. Exponentiation", "6. Square Root");
-    printf("\n %-40s %-40s %-40s", "7. Log (base e)", "8. Log (base 10)", "9. Sine (angle in radians)");
-    printf("\n %-40s %-40s", "10. Cosine (angle in radians)", "11. Tangent (angle in radians)");
+    printf("\n %-40s %-40s %-40s", "7. Log (base e)", "8. Log (base 10)", "9. Sine (angle in radian)");
+    printf("\n %-40s %-40s", "10. Cosine (angle in radian)", "11. Tangent (angle in radian)");
     printf("\n Enter `-1` to exit.");
+}
+
+int get_option(void)
+{
+    int option;
     printf("\n Enter operation number: ");
     scanf("%d", &option);
-    return 0;
+    return option;
 }
 
 int main(void)
 {
+    int option;
     double second_operand, first_operand;
     double result;
-    menu();
+    display_menu();
+    option = get_option();
     while (option != -1)
     {
         if ((option > 0) && (option <= 5))
@@ -43,8 +42,13 @@ int main(void)
             scanf("%lf", &first_operand);
         }
         else
-        printf("\n Wrong operation number provided.");
-        
+        {
+            printf("\n Wrong operation number provided.");
+            display_menu();
+            option = get_option();
+            continue;
+        }
+
         switch (option)
         {
             case 1:
@@ -60,6 +64,9 @@ int main(void)
                 printf("\n %g * %g = %g", first_operand, second_operand, result);
                 break;
             case 4:
+                if (second_operand == 0)
+                    printf("\n You can't divide by 0");
+                    break;
                 result = first_operand / second_operand;
                 printf("\n %g / %g = %g", first_operand, second_operand, result);
                 break;
@@ -69,7 +76,7 @@ int main(void)
                 break;
             case 6:
                 result = sqrt(first_operand);
-                printf("\n Sqaure root of %g is: %g", first_operand, result);
+                printf("\n Square root of %g is: %g", first_operand, result);
                 break;
             case 7:
                 result = log(first_operand);
@@ -81,15 +88,15 @@ int main(void)
                 break;
             case 9:
                 result = sin(first_operand);
-                printf("\n Sine of %g radian is: %g", first_operand, result);
+                printf("\n Sine of %g radian: %g", first_operand, result);
                 break;
             case 10:
                 result = cos(first_operand);
-                printf("\n Cosine of %g radian is: %g", first_operand, result);
+                printf("\n Cosine of %g radian: %g", first_operand, result);
                 break;
             case 11:
                 result = tan(first_operand);
-                printf("\n Tangent of %g radian is: %g", first_operand, result);
+                printf("\n Tangent of %g radian: %g", first_operand, result);
                 break;
         }
         printf("\n Press enter to continue...");
@@ -97,7 +104,8 @@ int main(void)
         getchar();
         printf("\033[2J\033[3J\033[H");
         fflush(stdout);
-        menu();
+        display_menu();
+        option = get_option();
     }
     return 0;
 }
