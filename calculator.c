@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-
+void invalid_input(void);
 void display_menu(void)
 {
     printf("\033[2J\033[3J\033[H");
@@ -14,9 +14,14 @@ void display_menu(void)
 
 int get_option(void)
 {
-    int option;
+    int option, scanned = 0;
     printf("\n Enter operation number: ");
-    scanf("%d", &option);
+    scanned += scanf("%d", &option);
+    if (scanned != 1)
+    {
+        invalid_input();
+        option = get_option();
+    }
     return option;
 }
 
@@ -24,7 +29,7 @@ void invalid_input(void)
 {
     char clear[50];
     printf("\n Invalid input provided.");
-    scanf("%s", *&clear);
+    fgets(clear, 50, stdin);
 }
 
 int main(void)
@@ -36,6 +41,7 @@ int main(void)
     option = get_option();
     while (option != -1)
     {
+        scanned = 0;
         if ((option > 0) && (option <= 5))
         {
             printf("\n Enter the first operand: ");
@@ -43,15 +49,24 @@ int main(void)
             printf("\n Enter the second operand: ");
             scanned += scanf("%lf", &second_operand);
             if (scanned != 2)
+            {
                 invalid_input();
+                display_menu();
+                option = get_option();
+                continue;
+            }
         }
         else if ((option > 5) && (option <= 11))
-
         {
             printf("\n Enter the operand: ");
             scanned += scanf("%lf", &first_operand);
             if (scanned != 1)
+            {
                 invalid_input();
+                display_menu();
+                option = get_option();
+                continue;
+            }
         }
         else
         {
@@ -77,8 +92,10 @@ int main(void)
                 break;
             case 4:
                 if (second_operand == 0)
+                {
                     printf("\n You can't divide by 0");
                     break;
+                }
                 result = first_operand / second_operand;
                 printf("\n %g / %g = %g", first_operand, second_operand, result);
                 break;
